@@ -1,5 +1,22 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyD5nJjmfjaEEFLtaJpTOnRRiP8V8v6vuis",
+  authDomain: "request-cep.firebaseapp.com",
+  projectId: "request-cep",
+  storageBucket: "request-cep.appspot.com",
+  messagingSenderId: "203579381223",
+  appId: "1:203579381223:web:95b6ec4808f41df6a99942"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 interface cepResposta {
   cep: string
