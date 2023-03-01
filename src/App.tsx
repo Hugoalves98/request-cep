@@ -37,7 +37,7 @@ function App() {
   axios.get<cepResposta>(`http://viacep.com.br/ws/${cep}/json/`).then(response => {
     setCepResposta(response.data)
     console.log(cepResposta)
-  }).catch((error) => {console.log(error)});
+  }).catch(() => {console.log('')});
 
   }, [cep])
 
