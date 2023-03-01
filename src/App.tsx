@@ -33,13 +33,13 @@ function App() {
   const[cepResposta, setCepResposta] = useState<cepResposta | null>()
 
   useEffect(() => {
-    console.log(cep)
+  console.log(cep, cepResposta)
   axios.get<cepResposta>(`http://viacep.com.br/ws/${cep}/json/`).then(response => {
     setCepResposta(response.data)
     console.log(cepResposta)
   }).catch(() => {console.log('')});
 
-  }, [cep])
+  }, [cep, cepResposta])
 
   return (
     <div >
