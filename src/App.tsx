@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import axios from 'axios'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -32,14 +32,26 @@ function App() {
 
   const[cepResposta, setCepResposta] = useState<cepResposta | null>()
 
-  useEffect(() => {
-  console.log(cep, cepResposta)
-  axios.get<cepResposta>(`http://viacep.com.br/ws/${cep}/json/`).then(response => {
-    setCepResposta(response.data)
-    console.log(cepResposta)
-  }).catch(() => {console.log('')});
 
-  }, [cep, cepResposta])
+  const consultaCep = () => {
+    
+    axios.get<cepResposta>(`http://viacep.com.br/ws/${cep}/json/`)
+      .then(response => {
+        setCepResposta(response.data)
+      }).catch((erro) => {
+        console.log(erro)
+      });
+  }
+
+  useEffect(() => {
+    console.log(cep, cepResposta)
+   const timeoutId = setTimeout(() => {
+   // if (cepResposta) { 
+      consultaCep()
+    //}
+  }, 1000)
+  return () => clearTimeout(timeoutId)
+  }, [ consultaCep])
 
   return (
     <div >
